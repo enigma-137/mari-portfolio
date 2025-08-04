@@ -61,7 +61,7 @@ export default function Home() {
       buttonText: "Visit Twitter!",
       alt: "Mari's picture",
       isLastStep: true,
-      twitterUrl: "https://twitter.com/tech_girlllll", 
+      twitterUrl: "https://twitter.com/Tech_girlll", 
     },
   ]
 
@@ -91,14 +91,14 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-pink-200 p-4 text-center">
+    <div className="relative flex min-h-screen flex-col items-center justify-center bg-pink-300 p-4 text-center">
       {showConfetti && (
         <Confetti
           width={windowDimensions.width}
           height={windowDimensions.height}
           numberOfPieces={200}
           recycle={false} 
-          colors={["#FFC0CB", "#FFD700", "#ADFF2F", "#87CEEB", "#DA70D6"]} // Pink, Gold, GreenYellow, SkyBlue, Orchid
+          colors={["#FFC0CB", "#FFD700", "#ADFF2F", "#87CEEB", "#DA70D6"]} 
         />
       )}
 
