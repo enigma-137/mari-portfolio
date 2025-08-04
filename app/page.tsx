@@ -30,14 +30,14 @@ export default function Home() {
     {
        character: "/characters/character-2.png",
       message:
-        "Happy Birthday, Mari! May your APIs always be RESTful and your databases never crash. Wishing you a day as perfectly optimized as your backend code!",
+        "I pray that your APIs always be RESTful and your databases never crash. Wishing you a day as perfectly optimized as your backend code!",
       buttonText: "Continue",
       alt: "Cute character with a birthday cake",
     },
     {
        character: "/characters/character-3.png",
       message:
-        "I HAVE A JOKEEEEE!!! Why did the backend developer break up with the frontend developer? Because they had too many unresolved merge conflicts!",
+        "I HAVE A JOKEEEEE!!!-- Why did the backend developer break up with the frontend developer? Because they had too many unresolved merge conflicts! 😂😂",
       buttonText: "Continue!",
       alt: "Cute character laughing",
     },
@@ -51,7 +51,7 @@ export default function Home() {
     {
        character: "/characters/character-5.png",
       message:
-        "Here's to a year of robust codes, scalable architectures, and zero production bugs! You're the best, Mari!",
+        "Here's to a year of robust codes, scalable architectures, and zero production bugs! You're one of the best, Mari!",
       buttonText: "See your surprise!",
       alt: "Cute character with a gift",
     },
@@ -64,7 +64,7 @@ export default function Home() {
     },
     {
       character: "/mari.jpg", 
-      message: "Happy Birthday, Mariiiii!!",
+      message: "I pray that your day is filled with love and laughter!",
       buttonText: "Open X!",
       alt: "Mari's picture",
       isLastStep: true,
