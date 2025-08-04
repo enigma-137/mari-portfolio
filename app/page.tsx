@@ -55,10 +55,17 @@ export default function Home() {
       buttonText: "See your surprise!",
       alt: "Cute character with a gift",
     },
+      {
+       character: "/characters/character.gif",
+      message:
+        "Nananananananananana... Happy Birthday to you, Mari! 🎉🎂",
+      buttonText: "Let's go!",
+      alt: "Cute character with a gift",
+    },
     {
       character: "/mari.jpg", 
       message: "Happy Birthday, Mariiiii!!",
-      buttonText: "Visit Twitter!",
+      buttonText: "Open X!",
       alt: "Mari's picture",
       isLastStep: true,
       twitterUrl: "https://twitter.com/Tech_girlll", 
