@@ -38,7 +38,7 @@ export default function Portfolio() {
           <div className="text-xl font-bold">
             <span className="text-white">{"def "}</span>
             <span className="text-blue-400">Mari</span>
-            <span className="text-white">{"()"}</span>
+            <span className="text-white font-light">{"()"}</span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#about" className="hover:text-blue-400 transition-colors">
