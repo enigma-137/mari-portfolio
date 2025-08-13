@@ -1,146 +1,361 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import Confetti from "react-confetti" 
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Github, Linkedin, Mail, Download,  Database, Server, Code, Cloud } from "lucide-react"
+import Image from "next/image"
+import Tilt from "react-parallax-tilt"
+import { useRouter } from "next/navigation"
 
-export default function Home() {
-  const [step, setStep] = useState(0)
-  const [showConfetti, setShowConfetti] = useState(false)
-  const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 })
-
-  useEffect(() => {
-   
-    const handleResize = () => {
-      setWindowDimensions({ width: window.innerWidth, height: window.innerHeight })
-    }
-    handleResize() // Set initial dimensions
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  const onboardingSteps = [
-    {
-      character: "/characters/character-1.png",
-      message: "Heyyyyy, pretty girl.",
-      buttonText: "Next",
-      alt: "Cute character waving",
-    },
-    {
-       character: "/characters/character-2.png",
-      message:
-        "I pray that your APIs always be RESTful and your databases never crash. Wishing you a day as perfectly optimized as your backend code!",
-      buttonText: "Continue",
-      alt: "Cute character with a birthday cake",
-    },
-    {
-       character: "/characters/character-3.png",
-      message:
-        "I HAVE A JOKEEEEE!!!-- Why did the backend developer break up with the frontend developer? Because they had too many unresolved merge conflicts! 😂😂",
-      buttonText: "Continue!",
-      alt: "Cute character laughing",
-    },
-    {
-       character: "/characters/character-4.png",
-      message:
-        "May your life be filled with as much joy as a successful deployment on a Friday afternoon. And may your debugging sessions be short and sweet!",
-      buttonText: "Almost there...",
-      alt: "Cute character thinking",
-    },
-    {
-       character: "/characters/character-5.png",
-      message:
-        "Here's to a year of robust codes, scalable architectures, and zero production bugs! You're one of the best, Mari!",
-      buttonText: "See your surprise!",
-      alt: "Cute character with a gift",
-    },
-      {
-       character: "/characters/character.gif",
-      message:
-        "Nananananananananana... Happy Birthday to you, Mari! 🎉🎂",
-      buttonText: "Let's go!",
-      alt: "Cute character with a gift",
-    },
-    {
-      character: "/mari.jpg", 
-      message: "I pray that your day is filled with love and laughter!",
-      buttonText: "Open X!",
-      alt: "Mari's picture",
-      isLastStep: true,
-      twitterUrl: "https://twitter.com/Tech_girlll", 
-    },
-  ]
-
-  const currentStep = onboardingSteps[step]
-
-  const handleNext = () => {
-    if (step < onboardingSteps.length - 1) {
-      setStep(step + 1)
-      if (step + 1 === onboardingSteps.length - 1) {
-       
-        setShowConfetti(true)
-      }
-    }
-
+export default function Portfolio() {
+  const router = useRouter()
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 },
   }
 
-  useEffect(() => {
-    // Attempt to play music on component mount
-    const audio = document.getElementById("background-music") as HTMLAudioElement
-    if (audio) {
-      audio.volume = 0.3
-      audio.play().catch((error) => {
-        console.log("Autoplay prevented:", error)
-        
-      })
-    }
-  }, [])
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center bg-pink-300 p-4 text-center">
-      {showConfetti && (
-        <Confetti
-          width={windowDimensions.width}
-          height={windowDimensions.height}
-          numberOfPieces={200}
-          recycle={false} 
-          colors={["#FFC0CB", "#FFD700", "#ADFF2F", "#87CEEB", "#DA70D6"]} 
-        />
-      )}
+    <div className="min-h-screen bg-black text-white">
+      {/* Navigation */}
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-0 left-0 right-0 z-50 p-6"
+      >
+        <div className="max-w-7xl   mx-auto flex justify-between items-center">
+          <div className="text-xl font-bold">
+            <span className="text-white">{"<"}</span>
+            <span className="text-blue-400">Mari</span>
+            <span className="text-white">{"/>"}</span>
+          </div>
+          <div className="hidden md:flex space-x-8">
+            <a href="#about" className="hover:text-blue-400 transition-colors">
+              About
+            </a>
+            <a href="#experience" className="hover:text-blue-400 transition-colors">
+              Experience
+            </a>
+            <a href="#projects" className="hover:text-blue-400 transition-colors">
+              Projects
+            </a>
+            <a href="#skills" className="hover:text-blue-400 transition-colors">
+              Skills
+            </a>
+            <a href="#contact" className="hover:text-blue-400 transition-colors">
+              Contact
+            </a>
+          </div>
+        </div>
+      </motion.nav>
 
-      <audio id="background-music" src="/The One.mp3" loop autoPlay className="hidden" />
-      
-      <div className="relative z-10 flex flex-col items-center justify-center gap-8">
-        <Image
-          src={currentStep.character || "/placeholder.svg"}
-          alt={currentStep.alt}
-          width={200}
-          height={200}
-          className="w-48 h-48 object-contain rounded-4xl"
-          priority={true} 
-        />
-        <h1 className="text-xl md:text-3xl font-bold text-white drop-shadow-sm max-w-md leading-tight">
-          {currentStep.message}
-        </h1>
-        {currentStep.isLastStep ? (
-          <a
-            href={currentStep.twitterUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full max-w-xs py-6 text-xl font-semibold rounded-full bg-white text-pink-500 hover:bg-gray-100 transition-colors duration-300 shadow-lg flex items-center justify-center"
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center p-6 pt-20">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-6xl bg-gray-900/50 rounded-3xl p-8 md:p-12 backdrop-blur-sm border border-gray-800"
+        >
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <motion.div {...fadeInUp}>
+                <p className="text-gray-400 text-lg tracking-widest mb-4">h e l l o !</p>
+                <h1 className="text-5xl md:text-7xl font-bold mb-4">
+                  I'm <span className="text-white">Maria</span>
+                </h1>
+                <p className="text-blue-400 text-xl md:text-2xl tracking-wider"> b a c k e n d d e v e l o p e r</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="flex flex-wrap gap-4 pt-6"
+              >
+                <Button onClick={() => router.push("/mari.pdf")} className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+                <Button onClick={() => window.open("https://github.com/NnannaMari09033", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
+                  <Github className="w-5 h-5" />
+                </Button>
+                <Button onClick={() => window.open("https://www.linkedin.com/in/maria-nnanna-53ab8b2b7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
+                  <Linkedin className="w-5 h-5" />
+                </Button>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="flex justify-center"
+            >
+              <div className="relative">
+                <div className="  bg-gradient-to-br from-blue-500/20 to-gray-600/20 rounded-full blur-2xl"></div>
+                <Tilt
+                  tiltMaxAngleX={10}
+                  tiltMaxAngleY={10}
+                  className=" overflow-hidden">
+                <Image
+                  src="/hero.jpg"
+                  alt="Mari"
+                  width={400}
+                  height={400}
+                  className="rounded-xl  relative z-10  transition-all duration-500"
+                />
+                </Tilt>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-4xl font-bold mb-8 text-center">
+              About <span className="text-blue-400">Me</span>
+            </h2>
+            <div className="bg-gray-900/50 rounded-2xl p-8 border border-gray-800">
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+               I’m Nnanna Maria, a backend developer who builds scalable, reliable systems using Python, Django, PostgreSQL, and Docker. I focus on crafting clean architectures, efficient databases, and well-structured APIs that power real-world applications. 
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed">
+               Beyond development, I’m a technical writer who turns complex backend topics into clear, actionable content for developers and tech enthusiasts. I love sharing knowledge through articles, tutorials, contributions, and helping others navigate backend development with confidence.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-6 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 {...fadeInUp} className="text-4xl font-bold mb-12 text-center">
+            Work <span className="text-blue-400">Experience</span>
+          </motion.h2>
+
+          <motion.div variants={staggerContainer} animate="animate" className="space-y-8">
+            {[
+              {
+                title: "Backend Developer",
+                company: "Nuwell AI",
+                period: "March 2025 - Present",
+                description:
+                  "Deployed and maintained backend services on Linux-based servers.  Integrated PostgreSQL database with optimized queries for faster data retrieval, Worked closely with frontend and data science teams to deliver high-performance features.",
+                technologies: ["Python Django", "PostgreSQL", "Docker", "Redis"],
+              },
+              // {
+              //   title: "Backend Developer",
+              //   company: "StartupXYZ",
+              //   period: "2020 - 2022",
+              //   description:
+              //     "Built RESTful APIs and GraphQL endpoints. Optimized database queries resulting in 40% performance improvement.",
+              //   technologies: ["Python", "Django", "MongoDB", "GraphQL", "Kubernetes"],
+              // },
+              {
+                title: "Backend Intern",
+                company: "Univelcity",
+                period: "June - August 2024",
+                description:
+                  "Developed web applications and learned best practices in software development. Contributed to multiple client projects.",
+                technologies: ["Python", "Git", "Linux"],
+              },
+            ].map((job, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="bg-gray-900/50 border-gray-800 p-6">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">{job.title}</h3>
+                      <p className="text-blue-400 font-medium">{job.company}</p>
+                    </div>
+                    <span className="text-gray-400 text-sm mt-2 md:mt-0">{job.period}</span>
+                  </div>
+                  <p className="text-gray-300 mb-4">{job.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {job.technologies.map((tech) => (
+                      <Badge key={tech} variant="secondary" className="bg-blue-500/20 text-blue-300 border-blue-500/30">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 {...fadeInUp} className="text-4xl font-bold mb-12 text-center">
+            Featured <span className="text-blue-400">Projects</span>
+          </motion.h2>
+
+          <motion.div
+            variants={staggerContainer}
+            animate="animate"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {currentStep.buttonText}
-          </a>
-        ) : (
-          <Button
-            onClick={handleNext}
-            className="w-full max-w-xs py-6 text-xl font-semibold rounded-full bg-white text-pink-500 hover:bg-gray-100 transition-colors duration-300 shadow-lg"
+            {[
+              {
+                title: "Taskverse (Currently under developement)",
+                description:
+                  " A backend only scalable task orchestration engine, designed to manage, monitor, schedule and track background jobs at a scale.",
+                technologies: ["Python", "Postgres", "Docker", "Django", "Redis"],
+                github: "https://github.com/NnannaMari09033/TaskVerse",
+                demo: "#",
+              },
+              {
+                title: "Local community market API",
+                description:
+                  "A RESTful API for a local community market platform, featuring user authentication, product listings, and search functionality.",
+                technologies: ["Python", "FastAPI", "WebSocket", "MongoDB"],
+                github: "https://github.com/NnannaMari09033/localcommunitymarketAPI",
+                demo: "#",
+              },
+              {
+                title: "School API",
+                description:
+                  "A simple school API using GraphQL. in one entry point to manage school data.",
+                technologies: ["Node.js", "ClickHouse", "GraphQL", "Docker"],
+                github: "https://github.com/NnannaMari09033/school",
+                demo: "#",
+              },
+            ].map((project, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="bg-gray-900/50 border-gray-800 p-6 h-full hover:border-blue-500/50 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                  <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech} variant="outline" className="border-gray-600 text-gray-300">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="flex gap-2">
+                    <Button onClick={() => window.open(project.github, "_blank")} variant="ghost" size="sm" className="text-blue-400 hover:text-blue-50 hover:bg-blue-600">
+                      <Github className="w-4 h-4 mr-2" />
+                      Code
+                    </Button>
+                    {/* No demo yet */}
+                    {/* <Button variant="ghost" size="sm" className="text-blue-400 hover:text-blue-300">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Demo
+                    </Button> */}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-6 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 {...fadeInUp} className="text-4xl font-bold mb-12 text-center">
+            Technical <span className="text-blue-400">Skills</span>
+          </motion.h2>
+
+          <motion.div
+            variants={staggerContainer}
+            animate="animate"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {currentStep.buttonText}
-          </Button>
-        )}
-      </div>
+            {[
+              {
+                category: "Languages",
+                icon: <Code className="w-8 h-8 text-blue-400" />,
+                skills: ["Python"],
+              },
+              {
+                category: "Frameworks",
+                icon: <Server className="w-8 h-8 text-blue-400" />,
+                skills: [ "Django"],
+              },
+              {
+                category: "Databases",
+                icon: <Database className="w-8 h-8 text-blue-400" />,
+                skills: ["PostgreSQL","Redis", "MySQL"],
+              },
+              {
+                category: "DevOps & Cloud",
+                icon: <Cloud className="w-8 h-8 text-blue-400" />,
+                skills: ["Docker",  "Linux"],
+              },
+            ].map((skillGroup, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="bg-gray-900/50 border-gray-800 p-6 text-center h-full">
+                  <div className="flex justify-center mb-4">{skillGroup.icon}</div>
+                  <h3 className="text-xl font-bold text-white mb-4">{skillGroup.category}</h3>
+                  <div className="space-y-2">
+                    {skillGroup.skills.map((skill) => (
+                      <div key={skill} className="text-gray-300 text-sm">
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+     
+      <section id="contact" className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-4xl font-bold mb-8">
+              Let's <span className="text-blue-400">Connect</span>
+            </h2>
+            <p className="text-gray-300 text-lg mb-8">
+              I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!
+            </p>
+
+            <div className="bg-gray-900/50 rounded-2xl p-8 border border-gray-800">
+              <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+                  <Mail className="w-5 h-5 mr-2" />
+                 nnannamari@gmail.com
+                </Button>
+                <div className="flex gap-4">
+                  <Button onClick={() => window.open("https://github.com/NnannaMari09033", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
+                    <Github className="w-6 h-6" />
+                  </Button>
+                  <Button onClick={() => window.open("https://www.linkedin.com/in/maria-nnanna-53ab8b2b7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
+                    <Linkedin className="w-6 h-6" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+
+      <footer className="py-8 px-6 border-t border-gray-800">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-gray-400">© {new Date().getFullYear()} Mari Backend Developer.</p>
+        </div>
+      </footer>
     </div>
   )
 }
