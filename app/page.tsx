@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Github, Linkedin, Mail, Download,  Database, Server, Code, Cloud } from "lucide-react"
+import { Github, Linkedin, Twitter, Mail, Download,  Database, Server, Code, Cloud } from "lucide-react"
 import Image from "next/image"
 import Tilt from "react-parallax-tilt"
 import { useRouter } from "next/navigation"
@@ -36,9 +36,9 @@ export default function Portfolio() {
       >
         <div className="max-w-7xl   mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
-            <span className="text-white">{"<"}</span>
+            <span className="text-white">{"def "}</span>
             <span className="text-blue-400">Mari</span>
-            <span className="text-white">{"/>"}</span>
+            <span className="text-white">{"()"}</span>
           </div>
           <div className="hidden md:flex space-x-8">
             <a href="#about" className="hover:text-blue-400 transition-colors">
@@ -61,7 +61,7 @@ export default function Portfolio() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center p-6 pt-20">
+      <section className="min-h-screen flex items-center justify-center p-3 md:p-6 pt-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -214,7 +214,7 @@ export default function Portfolio() {
           >
             {[
               {
-                title: "Taskverse (🚧🚥)",
+                title: "Taskverse (🚧)",
                 description:
                   " A backend only scalable task orchestration engine, designed to manage, monitor, schedule and track background jobs at a scale.",
                 technologies: ["Python", "Postgres", "Docker", "Django", "Redis"],
@@ -339,6 +339,9 @@ export default function Portfolio() {
                 <div className="flex gap-4">
                   <Button onClick={() => window.open("https://github.com/NnannaMari09033", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
                     <Github className="w-6 h-6" />
+                  </Button>
+                  <Button onClick={() => window.open("https://x.com/tech_girlll?s=21", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
+                    <Twitter className="w-6 h-6" />
                   </Button>
                   <Button onClick={() => window.open("https://www.linkedin.com/in/maria-nnanna-53ab8b2b7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", "_blank")} variant="ghost" size="icon" className="text-white hover:text-blue-400">
                     <Linkedin className="w-6 h-6" />
