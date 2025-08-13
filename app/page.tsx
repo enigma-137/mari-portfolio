@@ -75,7 +75,7 @@ export default function Portfolio() {
                 <h1 className="text-5xl md:text-7xl font-bold mb-4">
                   I'm <span className="text-white">Maria</span>
                 </h1>
-                <p className="text-blue-400 text-xl md:text-2xl tracking-wider"> b a c k e n d d e v e l o p e r</p>
+                <p className="text-blue-400 text-sm md:text-2xl tracking-wider"> b a c k e n d d e v e l o p e r</p>
               </motion.div>
 
               <motion.div
@@ -214,7 +214,7 @@ export default function Portfolio() {
           >
             {[
               {
-                title: "Taskverse (Currently under developement)",
+                title: "Taskverse (🚧🚥)",
                 description:
                   " A backend only scalable task orchestration engine, designed to manage, monitor, schedule and track background jobs at a scale.",
                 technologies: ["Python", "Postgres", "Docker", "Django", "Redis"],
